@@ -6,7 +6,7 @@ export class Constants {
     /**
      * Command to execute on Windows.
      */
-    public static readonly WINDOWS_COMMAND: string = 'wmic logicaldisk get Caption,FreeSpace,Size,VolumeSerialNumber,Description  /format:list';
+    public static readonly WINDOWS_COMMAND: string = 'wmic logicaldisk get Caption,FreeSpace,Size,VolumeSerialNumber,Description,VolumeName,DriveType  /format:list';
 
     /**
      * Command to execute on Linux.

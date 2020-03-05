@@ -36,6 +36,15 @@ export default class Drive {
     private readonly _mounted: string;
 
     /**
+     * Indicates the mount point of the disk.
+     */
+    private readonly _usbName: string;
+    /**
+     * Indicates the mount point of the disk.
+     */
+    private readonly _isUSB: boolean;
+
+    /**
      * Constructor for Drive class.
      *
      * @param {string} filesystem Drive filesystem.
@@ -45,13 +54,33 @@ export default class Drive {
      * @param {string} capacity Disk capacity.
      * @param {string} mounted Indicates the mount point of the disk.
      */
-    public constructor(filesystem: string, blocks: number, used: number, available: number, capacity: string, mounted: string) {
+    public constructor(filesystem: string, blocks: number, used: number, available: number, capacity: string, mounted: string, isUSB: boolean, usbName: string) {
         this._filesystem = filesystem;
         this._blocks = blocks;
         this._used = used;
         this._available = available;
         this._capacity = capacity;
         this._mounted = mounted;
+        this._mounted = mounted;
+        this._isUSB = isUSB;
+        this._usbName = usbName;
+    }
+
+    /**
+     * Drive filesystem.
+     *
+     * @return Gets drive filesystem.
+     */
+    get isUSB(): boolean {
+        return this._isUSB;
+    }
+    /**
+     * Drive filesystem.
+     *
+     * @return Gets drive filesystem.
+     */
+    get usbName(): string {
+        return this._usbName;
     }
 
     /**

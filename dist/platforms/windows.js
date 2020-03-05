@@ -26,6 +26,8 @@ var Windows = /** @class */ (function () {
         var description = '';
         var freeSpace = 0;
         var size = 0;
+        var driveType = 0;
+        var volumeName = '';
         lines.forEach(function (value) {
             if (value !== '') {
                 var tokens = value.split('=');
@@ -45,6 +47,12 @@ var Windows = /** @class */ (function () {
                     case 'Size':
                         size = isNaN(parseFloat(data)) ? 0 : +data;
                         break;
+                    case 'DriveType':
+                        driveType = isNaN(parseFloat(data)) ? 0 : +data;
+                        break;
+                    case 'VolumeName':
+                        volumeName = data;
+                        break;
                 }
             }
             else {
@@ -54,13 +62,15 @@ var Windows = /** @class */ (function () {
                     if (size > 0) {
                         percent = Math.round((used / size) * 100) + '%';
                     }
-                    var d = new drive_1.default(description, size, used, freeSpace, percent, caption);
+                    var d = new drive_1.default(description, size, used, freeSpace, percent, caption, driveType == 2, volumeName);
                     drives.push(d);
                     newDiskIteration = false;
                     caption = '';
                     description = '';
                     freeSpace = 0;
                     size = 0;
+                    driveType = 0;
+                    volumeName = '';
                 }
             }
         });

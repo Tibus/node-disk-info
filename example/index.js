@@ -29,6 +29,8 @@ function printResults(title, disks) {
         console.log('Available:', disk.available);
         console.log('Capacity:', disk.capacity);
         console.log('Mounted:', disk.mounted);
+        console.log('isUSB:', disk.isUSB);
+        console.log('USBName:', disk.usbName);
     }
 
 }

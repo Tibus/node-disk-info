@@ -16,14 +16,41 @@ var Drive = /** @class */ (function () {
      * @param {string} capacity Disk capacity.
      * @param {string} mounted Indicates the mount point of the disk.
      */
-    function Drive(filesystem, blocks, used, available, capacity, mounted) {
+    function Drive(filesystem, blocks, used, available, capacity, mounted, isUSB, usbName) {
         this._filesystem = filesystem;
         this._blocks = blocks;
         this._used = used;
         this._available = available;
         this._capacity = capacity;
         this._mounted = mounted;
+        this._mounted = mounted;
+        this._isUSB = isUSB;
+        this._usbName = usbName;
     }
+    Object.defineProperty(Drive.prototype, "isUSB", {
+        /**
+         * Drive filesystem.
+         *
+         * @return Gets drive filesystem.
+         */
+        get: function () {
+            return this._isUSB;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Drive.prototype, "usbName", {
+        /**
+         * Drive filesystem.
+         *
+         * @return Gets drive filesystem.
+         */
+        get: function () {
+            return this._usbName;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Drive.prototype, "filesystem", {
         /**
          * Drive filesystem.

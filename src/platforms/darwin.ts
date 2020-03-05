@@ -25,6 +25,8 @@ export class Darwin {
 
                 const line: string = value.replace(/ +(?= )/g, '');
                 const tokens = line.split(' ');
+                const isUSB = tokens[5].startsWith("/Volumes") && !tokens[0].startsWith("//");
+                const name = tokens[5].replace("/Volumes/", "");
 
                 const d = new Drive(
                     tokens[0],
@@ -32,7 +34,9 @@ export class Darwin {
                     isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2],
                     isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3],
                     tokens[4],
-                    tokens[5]);
+                    tokens[5],
+                    isUSB,
+                    name);
 
                 drives.push(d);
 
