@@ -25,9 +25,11 @@ var Darwin = /** @class */ (function () {
             if (value !== '') {
                 var line = value.replace(/ +(?= )/g, '');
                 var tokens = line.split(' ');
-                var isUSB = tokens[5].startsWith("/Volumes") && !tokens[0].startsWith("//");
-                var name = tokens[5].replace("/Volumes/", "");
-                var d = new drive_1.default(tokens[0], isNaN(parseFloat(tokens[1])) ? 0 : +tokens[1], isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2], isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3], tokens[4], tokens[5], isUSB, name);
+                var usbMountPath = "/Volumes/";
+                var mount = tokens.slice(5).join(' ');
+                var isUSB = mount.startsWith(usbMountPath) && !tokens[0].startsWith("//");
+                var name = mount.replace(usbMountPath, "");
+                var d = new drive_1.default(tokens[0], isNaN(parseFloat(tokens[1])) ? 0 : +tokens[1], isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2], isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3], tokens[4], mount, isUSB, name);
                 drives.push(d);
             }
         });

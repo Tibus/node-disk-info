@@ -26,8 +26,9 @@ export class Linux {
                 const line: string = value.replace(/ +(?= )/g, '');
                 const tokens = line.split(' ');
                 const usbMountPath = "/media/"+process.env.USER+"/";
-                const isUSB = tokens[5].startsWith(usbMountPath);
-                const usbName = tokens[5].replace(usbMountPath, "");
+                const mount = tokens.slice(5).join(' ');
+                const isUSB = mount.startsWith(usbMountPath);
+                const usbName = mount.replace(usbMountPath, "");
 
                 const d = new Drive(
                     tokens[0],
@@ -35,7 +36,7 @@ export class Linux {
                     isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2],
                     isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3],
                     tokens[4],
-                    tokens[5],
+                    mount,
                     isUSB,
                     usbName);
 

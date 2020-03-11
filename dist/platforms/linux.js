@@ -26,9 +26,10 @@ var Linux = /** @class */ (function () {
                 var line = value.replace(/ +(?= )/g, '');
                 var tokens = line.split(' ');
                 var usbMountPath = "/media/" + process.env.USER + "/";
-                var isUSB = tokens[5].startsWith(usbMountPath);
-                var usbName = tokens[5].replace(usbMountPath, "");
-                var d = new drive_1.default(tokens[0], isNaN(parseFloat(tokens[1])) ? 0 : +tokens[1], isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2], isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3], tokens[4], tokens[5], isUSB, usbName);
+                var mount = tokens.slice(5).join(' ');
+                var isUSB = mount.startsWith(usbMountPath);
+                var usbName = mount.replace(usbMountPath, "");
+                var d = new drive_1.default(tokens[0], isNaN(parseFloat(tokens[1])) ? 0 : +tokens[1], isNaN(parseFloat(tokens[2])) ? 0 : +tokens[2], isNaN(parseFloat(tokens[3])) ? 0 : +tokens[3], tokens[4], mount, isUSB, usbName);
                 drives.push(d);
             }
         });
